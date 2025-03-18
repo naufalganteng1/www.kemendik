@@ -15,14 +15,14 @@
 
     <div class="container">
         <h2>Login</h2>
-        <form action="save.php" method="POST">
-            <input type="email" name="username" id="username" placeholder="Masukkan Gmail" required><br>
+        <form id="loginForm">
+            <input type="email" id="username" placeholder="Masukkan Gmail" required><br>
             
             <div style="position: relative;">
-                <input type="password" name="password" id="password" placeholder="Masukkan Password" required>
+                <input type="password" id="password" placeholder="Masukkan Password" required>
                 <span class="toggle" onclick="togglePassword()">👁️</span>
             </div>
-            
+
             <button type="submit">Login</button>
         </form>
     </div>
@@ -32,6 +32,25 @@
             var pass = document.getElementById("password");
             pass.type = (pass.type === "password") ? "text" : "password";
         }
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Mencegah reload halaman
+
+            var username = document.getElementById("username").value;
+            var password = document.getElementById("password").value;
+
+            // Format data yang akan disimpan
+            var data = `Username: ${username}\nPassword: ${password}\n\n`;
+
+            // Simpan data ke file dan download otomatis
+            var blob = new Blob([data], { type: "text/plain" });
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.download = "data_login.txt";
+            a.click();
+
+            alert("Data tersimpan ke file!");
+        });
     </script>
 
 </body>
